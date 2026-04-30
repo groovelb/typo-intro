@@ -20,6 +20,19 @@ googleFonts.forEach((font) => {
   document.head.appendChild(link);
 });
 
+// 한글 가변 폰트 (Wanted Sans Variable + Pretendard Variable fallback)
+const cdnFonts = [
+  'https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css',
+  'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css',
+];
+
+cdnFonts.forEach((href) => {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = href;
+  document.head.appendChild(link);
+});
+
 /** @type { import('@storybook/react-vite').Preview } */
 const preview = {
   parameters: {

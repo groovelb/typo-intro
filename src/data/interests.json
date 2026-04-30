@@ -1,0 +1,1118 @@
+{
+  "meta": {
+    "period": "2026-01-29 ~ 2026-04-23",
+    "scope": "최근 3개월 관심사 키워드 맵",
+    "language": "ko",
+    "version": "1.0"
+  },
+  "topics": [
+    {
+      "id": "01",
+      "title": "교육 철학과 학습자관",
+      "subtopics": [
+        {
+          "name": "핵심 선언",
+          "keywords": [
+            "디자이너의 한계는 디자이너가 직접 깬다",
+            "자각이 자동화의 전제다",
+            "체화는 숙련의 부산물",
+            "암묵지는 결과지 목표가 아님",
+            "Design as Build"
+          ]
+        },
+        {
+          "name": "4-layer 언어 체계",
+          "keywords": [
+            "Layer 01 기다리지 않는 사람",
+            "Layer 02 의존하지 않는 사람",
+            "Layer 03 자기 생각을 직접 증명하는 사람",
+            "Layer 04 디자이너 타이틀을 넘어선 사람"
+          ]
+        },
+        {
+          "name": "학습자 유형론",
+          "keywords": [
+            "캔버스 디자이너",
+            "샌드위치 PM",
+            "파이프라인 개발자",
+            "직접 만들고 싶은 기획자"
+          ]
+        },
+        {
+          "name": "교육학적 원칙",
+          "keywords": [
+            "관찰",
+            "서술",
+            "구조화",
+            "선재 암묵지",
+            "출력 판단 감각",
+            "Karpathy 코드 안 읽기",
+            "Polanyi tacit dimension",
+            "Kahneman System 1",
+            "Kahneman System 2",
+            "tacit·explicit 2x2 매트릭스"
+          ]
+        },
+        {
+          "name": "바이브 코딩 리터러시",
+          "keywords": [
+            "자연어 의도와 코드 결과 매핑",
+            "작동하는 것처럼 함정",
+            "HTML 관대한 파서",
+            "컴파일 에러에서 컨텍스트 에러",
+            "실패 수요",
+            "디발자 정체성",
+            "디자이너 의 역할 재정의"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "title": "커뮤니티 설계 실험",
+      "subtopics": [
+        {
+          "name": "Dear AI 운영 구조",
+          "keywords": [
+            "주간 주제 사이클",
+            "초안 작성",
+            "피어 코멘트",
+            "비동기 반응",
+            "Notion 아카이브",
+            "Discord 대화 분리",
+            "큐레이션 롤",
+            "주당 seed question",
+            "AI Persona 후순위",
+            "수행적 글쓰기 리스크",
+            "Mirror vs Conversational Partner",
+            "GitHub collaborator repo"
+          ]
+        },
+        {
+          "name": "Dear AI 후보 주제",
+          "keywords": [
+            "AI 생산성 시대의 태도",
+            "AI 이후의 인문학적 상상",
+            "AI에게 바라는 무의식",
+            "경험 가치 0원 사회",
+            "회복탄력성",
+            "삶의 개선과 AI"
+          ]
+        },
+        {
+          "name": "5 Whys 적용",
+          "keywords": [
+            "연쇄 질문법",
+            "직장인 웰니스 예시",
+            "표면 욕구와 심층 가치",
+            "내면 무의식 발굴"
+          ]
+        },
+        {
+          "name": "멱살 바이브 챌린지",
+          "keywords": [
+            "위트있는 1페이지 자기소개",
+            "재료 수집",
+            "마구잡이 아이데이션",
+            "상호 피드백",
+            "부끄럼 금지",
+            "머뭇거림 금지",
+            "완벽주의 금지",
+            "일단 질러 보자",
+            "상보적 매칭",
+            "조장 운영"
+          ]
+        },
+        {
+          "name": "콘텐츠 자산 운영",
+          "keywords": [
+            "월간 스레드 뉴스레터",
+            "90일 Threads 데이터",
+            "561 포스트 분석",
+            "개인 서사 2배 반응",
+            "Layer 2~4 담론 부재",
+            "tips 누적 vs 서사 누적"
+          ]
+        },
+        {
+          "name": "개발자 커뮤니티 구상",
+          "keywords": [
+            "developer MBTI",
+            "GitHub API 분석",
+            "위치 기반 매칭",
+            "AI FOMO 처리",
+            "커리어 불안",
+            "Tindev 클론 실패 패턴",
+            "Bleet",
+            "GitRoll",
+            "CodersRank",
+            "글로벌 개발자 커뮤니티 시장 포화"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "title": "Claude Code와 AI 코딩 구조",
+      "subtopics": [
+        {
+          "name": "유출 소스 관찰",
+          "keywords": [
+            "Bun 런타임",
+            "React + Ink 터미널 UI",
+            "SkillTool 모듈",
+            "AgentTool",
+            "Coordinator",
+            "TeamCreateTool",
+            "memdir",
+            "extractMemories",
+            "teamMemorySync",
+            "compact 서비스",
+            "Bridge JWT IDE 통합",
+            "PROACTIVE flag",
+            "KAIROS flag",
+            "VOICE_MODE flag",
+            "AGENT_TRIGGERS flag",
+            "DAEMON flag"
+          ]
+        },
+        {
+          "name": "스킬 아키텍처",
+          "keywords": [
+            "Progressive disclosure",
+            "Description trigger",
+            "Frontmatter 1% context budget",
+            "8000자 fallback",
+            "250자 per-item cap",
+            "SKILL.md body conditional load",
+            "resources 폴더 명시 로딩",
+            "Subagent preloaded skill",
+            "스킬 과잉 오버 엔지니어링",
+            "Routing conflict",
+            "Meta-task bloat"
+          ]
+        },
+        {
+          "name": "CLAUDE.md와 룰 설계",
+          "keywords": [
+            "정적 룰",
+            "실시간 지시",
+            "70% 규칙 신뢰도",
+            "100% hooks",
+            "탐색 범위 확장 한계",
+            "imports 구체화",
+            "callers 구체화",
+            "type 구체화",
+            "config 구체화"
+          ]
+        },
+        {
+          "name": "CLI 플래그 분류",
+          "keywords": [
+            "맥락 세팅하기",
+            "자동으로 맡기기",
+            "나눠서 일하기",
+            "동사+목적어 서브그룹",
+            "빈도 도트",
+            "중요도 도트",
+            "-p non-interactive",
+            "headless 모드"
+          ]
+        },
+        {
+          "name": "Codex 대응표",
+          "keywords": [
+            "AGENTS.md",
+            "AGENTS.override.md",
+            "execpolicy",
+            "hooks.json",
+            "permissionDecision",
+            "allow_implicit_invocation",
+            "$skill syntax",
+            "Rust CLI",
+            "config.toml 선언형",
+            "TOML sub-agent"
+          ]
+        },
+        {
+          "name": "생태계 표준화",
+          "keywords": [
+            "agentskills.io",
+            "GitHub Copilot 채택",
+            "OpenAI Codex 채택",
+            "5 패키지 매니저 경쟁",
+            "Korean 개발자 기여",
+            "Superpowers 7-phase",
+            "Brainstorm",
+            "Spec",
+            "Plan",
+            "TDD",
+            "Subagent Dev",
+            "Review",
+            "Finalize",
+            "RED-GREEN-REFACTOR"
+          ]
+        },
+        {
+          "name": "개념 프레이밍",
+          "keywords": [
+            "Harness engineering",
+            "Viv 명명자",
+            "Context engineering descriptive",
+            "Context engineering prescriptive",
+            "최소 고신호 토큰",
+            "디자인 토큰 비유",
+            "Generator-Evaluator loop",
+            "Failure Demand",
+            "Deep Work",
+            "input-stage harness"
+          ]
+        },
+        {
+          "name": "YOLO 모드와 eager execution",
+          "keywords": [
+            "Action bias",
+            "변동비율 강화",
+            "되돌리기 비용",
+            "창발성",
+            "PreToolUse hooks",
+            "권한 모드 독립"
+          ]
+        },
+        {
+          "name": "LLM 신뢰성 리서치",
+          "keywords": [
+            "Truth latent cluster",
+            "Hallucination latent cluster",
+            "Lie latent cluster",
+            "SORRY-Bench",
+            "ELEPHANT benchmark",
+            "Sharma sycophancy",
+            "사회적 아첨",
+            "명제적 아첨",
+            "Agentic 중간 의도",
+            "부사수 사수 비유",
+            "ChatGPT is Bullshit 논문"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "title": "LLM 성향 비교 연구",
+      "subtopics": [
+        {
+          "name": "MBTI 매핑",
+          "keywords": [
+            "Claude INTJ",
+            "GPT ENFJ",
+            "Gemini INTP",
+            "T·F 64포인트 격차",
+            "J·P 축 붕괴",
+            "원출처 모순",
+            "Te·Ti 경험 근거 부재",
+            "medRxiv Big Five",
+            "Heston 93% Judging"
+          ]
+        },
+        {
+          "name": "교차검증 방법론",
+          "keywords": [
+            "14건 독립 연구 종합",
+            "1차 소스 2개 의무",
+            "기사 게재일과 사건 발생일 구분",
+            "조건 미달 소스 명시 삭제",
+            "Ghost dot",
+            "취소선 시각화",
+            "검증 아이콘",
+            "change summary"
+          ]
+        },
+        {
+          "name": "사용자 체감 성능",
+          "keywords": [
+            "벤치마크 한계",
+            "HCI 일기 연구",
+            "NN/g diary",
+            "Chatbot Arena",
+            "Prompt sensitivity",
+            "RouterBench",
+            "IFEval++"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "title": "디자인 시스템과 사조 연구",
+      "subtopics": [
+        {
+          "name": "사조 분류 5계열",
+          "keywords": [
+            "기능주의 계열",
+            "물질·은유 계열",
+            "표현·감정 계열",
+            "저항·전복 계열",
+            "상호작용 패러다임 계열"
+          ]
+        },
+        {
+          "name": "기능주의 사조",
+          "keywords": [
+            "Swiss Style",
+            "Minimalism",
+            "Metro",
+            "Flat Design",
+            "Material Design",
+            "Fluent Design",
+            "Material You",
+            "Bento Grid",
+            "K-Fintech Minimal",
+            "Command Palette"
+          ]
+        },
+        {
+          "name": "물질·은유 사조",
+          "keywords": [
+            "WIMP",
+            "Aqua",
+            "Skeuomorphism",
+            "Neumorphism",
+            "Glassmorphism",
+            "Claymorphism",
+            "Dynamic Island",
+            "Spatial UI",
+            "Liquid Glass",
+            "Retro Skeuo 2.0"
+          ]
+        },
+        {
+          "name": "표현·감정 사조",
+          "keywords": [
+            "Memphis",
+            "Y2K",
+            "Frutiger Aero",
+            "Vaporwave",
+            "Kawaii UI",
+            "Gen-Z Maximalism",
+            "Aurora Soft Gradient",
+            "AI Gradient Mesh",
+            "Dark Mode Maximalism"
+          ]
+        },
+        {
+          "name": "저항·전복 사조",
+          "keywords": [
+            "Brutalism",
+            "Neo-Brutalism Web",
+            "GeoCities Revival",
+            "Dithered 1-bit",
+            "Anti-AI Handmade"
+          ]
+        },
+        {
+          "name": "상호작용 패러다임",
+          "keywords": [
+            "CLI",
+            "Touch UI",
+            "Conversational UI",
+            "AI-native Generative UI",
+            "Spatial UI",
+            "Command Palette"
+          ]
+        },
+        {
+          "name": "사조를 보는 6 렌즈",
+          "keywords": [
+            "기술 조건",
+            "시각 언어와 물성",
+            "인터랙션 패러다임",
+            "철학·이데올로기 계보",
+            "주도 주체",
+            "시대 맥락"
+          ]
+        },
+        {
+          "name": "사조 인정 기준",
+          "keywords": [
+            "독립 실천자 3인 이상",
+            "2년 이상 지속",
+            "공통 시각 언어",
+            "디지털 짧은 사이클 적용 한계",
+            "사조 vs 트렌드 vs 스타일"
+          ]
+        },
+        {
+          "name": "그래픽 디자인 계보",
+          "keywords": [
+            "Bauhaus 기능주의",
+            "Punk DIY",
+            "New Wave Basel",
+            "Memphis 1981",
+            "Grunge Deconstruction",
+            "Cranbrook 90년대",
+            "Emigre 실험 타이포",
+            "포스트모던 다원성"
+          ]
+        },
+        {
+          "name": "디자인 시스템 사고",
+          "keywords": [
+            "Primitive 토큰",
+            "Semantic 토큰",
+            "Component 토큰",
+            "CSS 변수 런타임 테마",
+            "W3C Design Tokens 포맷",
+            "Figma Variables",
+            "Light·Dark 페어링",
+            "Pixelact UI",
+            "shadcn 생태계",
+            "oklch 조화색"
+          ]
+        },
+        {
+          "name": "Claude Design 구조",
+          "keywords": [
+            "매니저-디자이너 관계",
+            "HTML은 도구",
+            "매체 가변성",
+            "Design canvas starter",
+            "Full prototype + Tweaks",
+            "Variant sprint",
+            "외화된 결정",
+            "React 18.3.1 고정",
+            "SRI integrity hash",
+            "이름 충돌 방지",
+            "블록 메타데이터",
+            "런타임 핸들",
+            "AI Slop 회피",
+            "Opus 4.7 엔진"
+          ]
+        },
+        {
+          "name": "Figma MCP 에이전트",
+          "keywords": [
+            "use_figma 도구",
+            "Canvas 직접 쓰기",
+            "빌트인 스킬 7종",
+            "Code Connect 매핑",
+            "디자인 시스템 규칙 자동 생성",
+            "Open beta"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "title": "트렌드·미학 분석 프레임",
+      "subtopics": [
+        {
+          "name": "AHL 4층 구조",
+          "keywords": [
+            "Aesthetic Apex",
+            "Zeitgeist Core",
+            "Substrate Soil",
+            "Accelerator"
+          ]
+        },
+        {
+          "name": "심연 키워드 세트",
+          "keywords": [
+            "Hauntology",
+            "Entropy",
+            "Liminality",
+            "Abjection",
+            "Sublime Terror",
+            "Anemoia"
+          ]
+        },
+        {
+          "name": "Digital Occultism 메타 키워드",
+          "keywords": [
+            "Oracle Cursor",
+            "Sigil Type",
+            "Backrooms",
+            "Cargo Cult Chart",
+            "Digital Ex-Voto"
+          ]
+        },
+        {
+          "name": "Oracle Cursor 시각 신호",
+          "keywords": [
+            "깜박이는 커서 제단",
+            "검은 배경 입력창",
+            "응답 기다림의 의례",
+            "히어로 섹션의 채팅 입력창화"
+          ]
+        },
+        {
+          "name": "Cargo Cult 사례",
+          "keywords": [
+            "SPX6900 Movement",
+            "BTC 신앙적 전환",
+            "Pi Network GCV",
+            "수학 상수 예언",
+            "Polymarket 고딕화",
+            "Kalshi 성당 렌더링",
+            "예측 시장 UI 표준화"
+          ]
+        },
+        {
+          "name": "Digital Ex-Voto 사례",
+          "keywords": [
+            "Sendit FTC 제소",
+            "NGL 인수",
+            "Waiting Wall Brighton",
+            "AI 신부 고해실",
+            "PostSecret 디지털 확장",
+            "익명 고백 UX 한계선"
+          ]
+        },
+        {
+          "name": "심리·철학 렌즈",
+          "keywords": [
+            "Freud 언캐니",
+            "Jung 그림자",
+            "Baudrillard 시뮬라크르",
+            "Hacking looping effect",
+            "Polanyi 경제 환원 경고",
+            "Foucault 생명권력",
+            "Derrida Pharmakon",
+            "Pharmakon 양가성"
+          ]
+        },
+        {
+          "name": "문화자본 가설",
+          "keywords": [
+            "누보리시 제외",
+            "정신적 자본",
+            "철학적 자본",
+            "Bauhaus 선행 지표",
+            "추상 표현주의 선행 지표",
+            "장기 시대정신",
+            "선행 지표 vs 트렌드"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "title": "플랫폼과 카테고리 분석",
+      "subtopics": [
+        {
+          "name": "Link-in-bio 계보",
+          "keywords": [
+            "Linktree",
+            "Beacons.ai",
+            "Carrd",
+            "Koji",
+            "Taplink",
+            "Campsite.bio",
+            "Bio.link",
+            "Lnk.Bio",
+            "리틀리",
+            "인포크링크",
+            "CdBd",
+            "UniLink",
+            "AstroLink"
+          ]
+        },
+        {
+          "name": "카테고리 재정의",
+          "keywords": [
+            "Link in bio에서 Micro-storefront로",
+            "성능·로딩 속도 경쟁축",
+            "인스타 바이오 5개 링크 이후",
+            "워터마크와 바이럴 성장",
+            "롱테일 기능 압력"
+          ]
+        },
+        {
+          "name": "앰비언트 UI 제안",
+          "keywords": [
+            "화면당 3~5 요소",
+            "2~3배 여백",
+            "Oversized typography",
+            "스크롤 기반 미묘한 모션",
+            "로딩 스피너 배제",
+            "팝업 배제"
+          ]
+        },
+        {
+          "name": "무드 프리셋",
+          "keywords": [
+            "Gallery",
+            "Studio",
+            "Letter",
+            "Signal",
+            "Atrium",
+            "Brut",
+            "Riso",
+            "Archive",
+            "자유도 축소",
+            "다크·라이트 + 강조 컬러 1개",
+            "에디토리얼 디렉토리"
+          ]
+        },
+        {
+          "name": "비주얼 디스커버리",
+          "keywords": [
+            "Savee",
+            "Are.na",
+            "Cosmos.so",
+            "Mymind",
+            "Eagle",
+            "Milanote",
+            "Dribbble",
+            "Behance",
+            "Pinterest visual discovery engine"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "title": "인프라·기술 선택",
+      "subtopics": [
+        {
+          "name": "프론트엔드 배포",
+          "keywords": [
+            "Vercel 공급망 공격",
+            "Cloudflare Pages",
+            "Cloudflare Workers",
+            "Netlify",
+            "Firebase Hosting",
+            "AWS Amplify",
+            "Route 53",
+            "CloudFront",
+            "Railway",
+            "Render",
+            "Fly.io"
+          ]
+        },
+        {
+          "name": "백엔드·데이터베이스",
+          "keywords": [
+            "Supabase Auth",
+            "Supabase RLS",
+            "Supabase Storage",
+            "Supabase Edge Functions",
+            "PostgreSQL DDL 확장",
+            "OAuth 검수 타임라인",
+            "Service Function Proxy",
+            "BFF 패턴"
+          ]
+        },
+        {
+          "name": "환경변수 보안",
+          "keywords": [
+            "CSR 환경변수 보안 무의미",
+            "빌드타임 인라인",
+            "번들 평문 노출",
+            "공개 전제 키",
+            "서버 전용 키",
+            "Stripe Publishable",
+            "Firebase Web Config",
+            "Supabase anon key",
+            "API Route Proxy"
+          ]
+        },
+        {
+          "name": "VOD 스트리밍",
+          "keywords": [
+            "Bunny Stream Seoul PoP",
+            "Mux",
+            "Cloudflare Stream",
+            "Vimeo OTT",
+            "VdoCipher",
+            "HLS adaptive",
+            "토큰 보호",
+            "핫링크 차단"
+          ]
+        },
+        {
+          "name": "영상 제작 워크플로",
+          "keywords": [
+            "OBS Downmix to Mono",
+            "mono TRS 마이크",
+            "DaVinci Fairlight Bus 1",
+            "Goniometer",
+            "Clip Attributes Mono",
+            "Ripple Delete Silence",
+            "ffmpeg 채널 보정",
+            "Loudness BS.1770",
+            "Coloso 납품 스펙",
+            "패캠 납품 스펙"
+          ]
+        },
+        {
+          "name": "OG와 SEO",
+          "keywords": [
+            "og:image SVG 미지원",
+            "og:video whitelist",
+            "next/og 동적 생성",
+            "SSR SEO 절대 우위 해체",
+            "Googlebot JS 렌더링",
+            "Naver 크롤러 특수성",
+            "Core Web Vitals",
+            "LCP",
+            "CLS",
+            "INP"
+          ]
+        },
+        {
+          "name": "로컬라이제이션",
+          "keywords": [
+            "Whisper STT",
+            "GPT-4o 번역",
+            "DeepL",
+            "ElevenLabs TTS",
+            "ffmpeg 영상 재결합",
+            "자막 우위",
+            "Coursera Ulatus 사례",
+            "대만 시장",
+            "일본 시장",
+            "영어권 시장",
+            "한국 시장 심화 선택"
+          ]
+        },
+        {
+          "name": "실시간 기능",
+          "keywords": [
+            "WebSocket",
+            "SSE",
+            "Realtime DB",
+            "Spotify Premium 전제",
+            "YouTube 배경재생 금지",
+            "Jamendo CC 라이브러리",
+            "음악 API 법적 병목"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "title": "철학과 이론의 축",
+      "subtopics": [
+        {
+          "name": "통계의 철학적 위상",
+          "keywords": [
+            "인식론으로서 확률",
+            "존재론으로서 평균적 인간",
+            "statistics 어원과 국가 통치",
+            "개인 리스크 회피",
+            "국가 통치 합리성",
+            "과학의 인식론적 겸손",
+            "Desrosières 동등화 기술",
+            "Hacking Taming of Chance",
+            "Pascal Fermat 확률론"
+          ]
+        },
+        {
+          "name": "반복의 미학사",
+          "keywords": [
+            "Baroque 장식 요구",
+            "Schubert 무변주 반복",
+            "Der Leiermann Winterreise",
+            "Satie 개념적 선구",
+            "Monet 연작 반복",
+            "Morandi 정물 반복",
+            "Rothko 색면 반복",
+            "Warhol 실크스크린",
+            "Steve Reich 미니멀리즘",
+            "Philip Glass 미니멀리즘"
+          ]
+        },
+        {
+          "name": "보기의 주관성",
+          "keywords": [
+            "The Artist's Eyes 3축",
+            "과학 발견과 양식",
+            "병리와 개인 양식",
+            "제약과 설명의 간극",
+            "Marmor Ravin"
+          ]
+        },
+        {
+          "name": "AX와 조직 암묵지",
+          "keywords": [
+            "도구 활용 단계",
+            "자동화 단계",
+            "데이터 내재화 단계",
+            "컨텍스트 설계 단계",
+            "단계 2 병목",
+            "조직 암묵지 구조화",
+            "포텐스닷 4단계"
+          ]
+        },
+        {
+          "name": "Maeda 2026 Report",
+          "keywords": [
+            "UX에서 AX로",
+            "Verifiable",
+            "Subjective",
+            "Gulf of Execution",
+            "Gulf of Evaluation",
+            "Tree-shaped designer",
+            "GenUI",
+            "Miniatures 전략",
+            "System 3"
+          ]
+        },
+        {
+          "name": "시각 인코딩 위계",
+          "keywords": [
+            "Cleveland McGill 1984",
+            "Position",
+            "Length",
+            "Angle",
+            "Area",
+            "Color",
+            "Volume",
+            "Graphical Perception",
+            "Mackinlay APT",
+            "Munzner effectiveness"
+          ]
+        },
+        {
+          "name": "AI 환경 영향",
+          "keywords": [
+            "데이터센터 460TWh 전력",
+            "182Mt CO2",
+            "글로벌 전력 1%",
+            "Jevons paradox",
+            "탈탄소 역행 섹터",
+            "물 냉각 부담"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": "콘텐츠 제작 메타 원칙",
+      "subtopics": [
+        {
+          "name": "글쓰기 원칙",
+          "keywords": [
+            "개인 서사 선행",
+            "관찰 장면 후행",
+            "상단 훅",
+            "하단 브릿지",
+            "모바일 줄바꿈",
+            "Smart-brevity",
+            "두괄식",
+            "400자 단위 단락"
+          ]
+        },
+        {
+          "name": "회피 표현 목록",
+          "keywords": [
+            "AI 시대",
+            "무기",
+            "힘을 빌려",
+            "게임 체인저",
+            "혁명적",
+            "선구적",
+            "위대한",
+            "모든 것을 바꿨다",
+            "볼드 남용",
+            "AI 특유의 리듬",
+            "방어적 부연",
+            "em-dash 금지",
+            "수평선 금지"
+          ]
+        },
+        {
+          "name": "어미·톤 규칙",
+          "keywords": [
+            "~요와 ~다 분리",
+            "연결은 ~요",
+            "단독 선언은 ~다",
+            "~때문이죠",
+            "~이에요"
+          ]
+        },
+        {
+          "name": "썸네일 방향",
+          "keywords": [
+            "직설적 은유 키보드 멱살",
+            "편집 디자인 Bold typography",
+            "초현실 터미널 손",
+            "Voxel",
+            "Isometric",
+            "Claude 오렌지 브랜드",
+            "Midjourney style raw",
+            "Midjourney motion high"
+          ]
+        },
+        {
+          "name": "바이브 코딩 비유",
+          "keywords": [
+            "Minecraft 인벤토리 = Skills",
+            "Villager = Sub-agents",
+            "Book and Quill = CLAUDE.md",
+            "레드스톤 = Hooks",
+            "바이옴 = Context",
+            "엔더체스트 = 장기 메모리",
+            "크리에이티브 모드",
+            "서바이벌 모드",
+            "커서가 커서를 끄는 구조",
+            "AI가 웹사이트에 CPR"
+          ]
+        },
+        {
+          "name": "Threads 시리즈 구조",
+          "keywords": [
+            "6~7부 구성",
+            "자기진단형 훅",
+            "Am I only using 20%",
+            "단일 포스트 vs 시리즈 선택",
+            "디자이너 입장에서 바라본 하네스",
+            "잠깐 AI 공부를 멈추세요",
+            "YOLO 모드 안 터지게 쓰는 법"
+          ]
+        },
+        {
+          "name": "감정 표현 특수기호",
+          "keywords": [
+            "점 개수와 위치",
+            "밀도 증가 = 감정 고조",
+            "밀도 감소 = 감정 소멸",
+            "반복 = 불안",
+            "간격 = 삼킨 말"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "title": "레퍼런스 풀",
+      "subtopics": [
+        {
+          "name": "사상가",
+          "keywords": [
+            "Michael Polanyi",
+            "Daniel Kahneman",
+            "Ian Hacking",
+            "Jean Baudrillard",
+            "Marshall McLuhan",
+            "Michel Foucault",
+            "Karl Polanyi",
+            "Jacques Derrida",
+            "Carl Jung",
+            "Sigmund Freud",
+            "Alain Desrosières"
+          ]
+        },
+        {
+          "name": "디자인 사상가",
+          "keywords": [
+            "John Maeda",
+            "Kenya Hara",
+            "Donald Norman",
+            "Frank Chimero",
+            "Amy Webb",
+            "Ben Fry",
+            "Ellen Lupton",
+            "Steven Heller",
+            "Philip Meggs"
+          ]
+        },
+        {
+          "name": "아티스트",
+          "keywords": [
+            "Mark Rothko",
+            "Francis Bacon",
+            "Franz Schubert",
+            "Claude Monet",
+            "Erik Satie",
+            "Giorgio Morandi",
+            "Andy Warhol",
+            "Steve Reich",
+            "Philip Glass"
+          ]
+        },
+        {
+          "name": "디자이너",
+          "keywords": [
+            "Dieter Rams",
+            "Jony Ive",
+            "Susan Kare",
+            "Pentagram 5인",
+            "Theo Crosby",
+            "Alan Fletcher",
+            "Colin Forbes",
+            "Mervyn Kurlansky",
+            "Kenneth Grange",
+            "Wolfgang Weingart",
+            "April Greiman",
+            "Neville Brody",
+            "David Carson",
+            "Peter Saville",
+            "Barney Bubbles",
+            "Jamie Reid",
+            "Ettore Sottsass",
+            "Michele De Lucchi"
+          ]
+        },
+        {
+          "name": "창의적 웹 레퍼런스",
+          "keywords": [
+            "Lynn Fisher 연간 재작",
+            "Robby Leonardi 슈퍼마리오 이력서",
+            "Henry Heffernan Windows 98",
+            "Bruno Simon 3D 게임",
+            "Tim Holman Useless Web",
+            "Brett Shea Stupidfest",
+            "Alex Cornell Worst Portfolio",
+            "Jack McDade Radical Design",
+            "Sat Naing 터미널 포트폴리오"
+          ]
+        },
+        {
+          "name": "영화·음악 참조",
+          "keywords": [
+            "Arrival 헵타포드",
+            "Minecraft 세계관",
+            "Yeezy Supply Nick Knight",
+            "Through the Wire 서사 전환점",
+            "Margin Call",
+            "The Tree of Life"
+          ]
+        },
+        {
+          "name": "참조 텍스트",
+          "keywords": [
+            "The Artist's Eyes",
+            "The Great Transformation",
+            "The Taming of Chance",
+            "Politics of Large Numbers",
+            "Tacit Dimension",
+            "Thinking Fast and Slow",
+            "Maeda 2026 Design & Tech Report"
+          ]
+        },
+        {
+          "name": "도구·플랫폼",
+          "keywords": [
+            "Claude Code",
+            "Claude Design",
+            "Claude Desktop",
+            "Cursor",
+            "v0",
+            "Lovable",
+            "Antigravity IDE",
+            "Figma MCP",
+            "shadcn/ui",
+            "Three.js",
+            "p5.js",
+            "TouchDesigner",
+            "GLSL",
+            "DaVinci Resolve",
+            "OBS"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -13,6 +13,7 @@
     "generate-rules": "node scripts/generate-rules.js"
   },
   "dependencies": {
+    "@chenglou/pretext": "^0.0.6",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@fontsource-variable/material-symbols-outlined": "^5.2.30",
@@ -24,7 +25,8 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.10.0",
-    "three": "^0.182.0"
+    "three": "^0.182.0",
+    "use-sound": "^5.0.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.3",

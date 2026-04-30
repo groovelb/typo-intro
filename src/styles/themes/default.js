@@ -1,18 +1,18 @@
 /**
- * Default Theme
+ * Default Theme — Paper & Ink
  *
- * 프로젝트의 기본 디자인 토큰을 정의하는 표준 테마입니다.
+ * 종이와 잉크를 컨셉으로 한 디자인 토큰.
  * 피그마의 Design Tokens / Variables와 동일한 역할입니다.
  *
  * ## 핵심 철학
  * - **Sharp Corners**: borderRadius 0 (날카로운 모서리)
  * - **Dimmed Shadow**: offset 없이 blur만 사용하는 은은한 그림자
- * - **Pure White**: 깔끔한 흰색 배경
- * - **Brand Blue**: Primary 색상 #0000FF
+ * - **Paper White**: 살짝 violet으로 틸트된 종이 흰색 (#FBFAFE)
+ * - **Ink Black**: 살짝 violet으로 틸트된 잉크 검정 (#0F0A1F)
  */
 
 import { createTheme } from '@mui/material/styles';
-import { blueGrey, grey } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
 
 // ============================================================
 // 1. Color Tokens (색상 토큰)
@@ -20,17 +20,19 @@ import { blueGrey, grey } from '@mui/material/colors';
 const palette = {
   mode: 'light',
   // 브랜드 색상
+  // Primary = Ink (violet 틸트 잉크, 채도 강화)
   primary: {
-    light: '#6666FF',
-    main: '#0000FF',
-    dark: '#0000B2',
-    contrastText: '#FFFFFF',
+    light: '#2A2240',
+    main: '#110A26',
+    dark: '#06031A',
+    contrastText: '#F5F0FA',
   },
+  // Secondary = Faded Violet Ink
   secondary: {
-    light: blueGrey[700],
-    main: blueGrey[900],
-    dark: '#1a252b',
-    contrastText: '#FFFFFF',
+    light: '#6F6885',
+    main: '#3E3559',
+    dark: '#1F1A33',
+    contrastText: '#F5F0FA',
   },
 
   // 상태 색상 (Feedback)
@@ -59,30 +61,30 @@ const palette = {
     contrastText: '#FFFFFF',
   },
 
-  // 텍스트 색상
+  // 텍스트 색상 (violet-tilted ink: rgb(17, 10, 38), 틴트 강화)
   text: {
-    primary: 'rgba(0, 0, 0, 0.87)',
-    secondary: 'rgba(0, 0, 0, 0.6)',
-    disabled: 'rgba(0, 0, 0, 0.38)',
+    primary: 'rgba(17, 10, 38, 0.94)',
+    secondary: 'rgba(17, 10, 38, 0.65)',
+    disabled: 'rgba(17, 10, 38, 0.40)',
   },
 
-  // 배경 색상
+  // 배경 색상 (Paper — violet 틸트 종이, 채도 강화)
   background: {
-    default: '#FFFFFF',
-    paper: '#FFFFFF',
+    default: '#F5F0FA',
+    paper: '#F9F5FD',
   },
 
   // 구분선
-  divider: 'rgba(0, 0, 0, 0.12)',
+  divider: 'rgba(17, 10, 38, 0.14)',
 
   // 액션 상태
   action: {
-    active: 'rgba(0, 0, 0, 0.54)',
-    hover: 'rgba(0, 0, 0, 0.04)',
-    selected: 'rgba(0, 0, 0, 0.08)',
-    disabled: 'rgba(0, 0, 0, 0.26)',
-    disabledBackground: 'rgba(0, 0, 0, 0.12)',
-    focus: 'rgba(0, 0, 0, 0.12)',
+    active: 'rgba(17, 10, 38, 0.56)',
+    hover: 'rgba(17, 10, 38, 0.05)',
+    selected: 'rgba(17, 10, 38, 0.09)',
+    disabled: 'rgba(17, 10, 38, 0.28)',
+    disabledBackground: 'rgba(17, 10, 38, 0.14)',
+    focus: 'rgba(17, 10, 38, 0.14)',
   },
 
   // Grey 스케일
@@ -245,10 +247,10 @@ const shape = {
 // ============================================================
 const customShadows = {
   none: 'none',
-  sm: '0 0 12px rgba(0, 0, 0, 0.06)',
-  md: '0 0 16px rgba(0, 0, 0, 0.08)',
-  lg: '0 0 20px rgba(0, 0, 0, 0.10)',
-  xl: '0 0 24px rgba(0, 0, 0, 0.12)',
+  sm: '0 0 12px rgba(15, 10, 31, 0.06)',
+  md: '0 0 16px rgba(15, 10, 31, 0.08)',
+  lg: '0 0 20px rgba(15, 10, 31, 0.10)',
+  xl: '0 0 24px rgba(15, 10, 31, 0.12)',
 };
 
 // ============================================================

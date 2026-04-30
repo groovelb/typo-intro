@@ -1,0 +1,6 @@
+{
+  "name": "Particle Flow Typography",
+  "description": "A high-performance WebGL particle system where 25,000+ particles flow, snap into text formation, and disperse using custom GLSL shaders.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

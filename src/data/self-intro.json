@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "version": "1.0",
+    "language": "ko",
+    "tone": "선언형 ~다 통일",
+    "subject": "groovelb",
+    "period": "2026-01-29 ~ 2026-04-23"
+  },
+  "layers": [
+    {
+      "id": "L01",
+      "label": "기다리지 않는 사람",
+      "leadSentence": "나는 [도구]가 멈춘 자리에서 [직접] [움직이는] 사람이다.",
+      "slots": {
+        "도구": { "topicId": "03", "subtopicName": "CLI 플래그 분류" },
+        "직접": { "topicId": "01", "subtopicName": "핵심 선언" },
+        "움직이는": { "topicId": "03", "subtopicName": "YOLO 모드와 eager execution" }
+      }
+    },
+    {
+      "id": "L02",
+      "label": "의존하지 않는 사람",
+      "leadSentence": "나는 [스킬]과 [하네스] 사이를 [내 손으로] 잇는 사람이다.",
+      "slots": {
+        "스킬": { "topicId": "03", "subtopicName": "스킬 아키텍처" },
+        "하네스": { "topicId": "03", "subtopicName": "개념 프레이밍" },
+        "내 손으로": { "topicId": "03", "subtopicName": "CLAUDE.md와 룰 설계" }
+      }
+    },
+    {
+      "id": "L03",
+      "label": "자기 생각을 직접 증명하는 사람",
+      "leadSentence": "나는 [암묵지]를 [반복]으로 외화하는 [사조]를 따른다.",
+      "slots": {
+        "암묵지": { "topicId": "01", "subtopicName": "교육학적 원칙" },
+        "반복": { "topicId": "09", "subtopicName": "반복의 미학사" },
+        "사조": { "topicId": "05", "subtopicName": "사조 분류 5계열" }
+      }
+    },
+    {
+      "id": "L04",
+      "label": "디자이너 타이틀을 넘어선 사람",
+      "leadSentence": "나는 [디발자]로서 [Design as Build]를 [매체 가변성] 위에 세운다.",
+      "slots": {
+        "디발자": { "topicId": "01", "subtopicName": "바이브 코딩 리터러시" },
+        "Design as Build": { "topicId": "05", "subtopicName": "Claude Design 구조" },
+        "매체 가변성": { "topicId": "05", "subtopicName": "Claude Design 구조" }
+      }
+    }
+  ]
+}
