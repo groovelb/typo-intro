@@ -29,9 +29,10 @@ export default function useTypingSound(positioned, { muted = false, keyVolume = 
 
     if (prev === null || muted) return;
 
-    const charsAdded = totalRevealed - prev.totalRevealed;
-    if (charsAdded > 0) {
-      playKey({ playbackRate: 0.93 + Math.random() * 0.14 });
+    const delta = totalRevealed - prev.totalRevealed;
+    if (delta !== 0) {
+      const rateBase = delta < 0 ? 1.05 : 0.93;
+      playKey({ playbackRate: rateBase + Math.random() * 0.14 });
     }
   }, [positioned, muted, playKey]);
 }

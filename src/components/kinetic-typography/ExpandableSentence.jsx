@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Drawer, IconButton, useMediaQuery } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import measureWord from './measureWord';
 import useTypingSound from './useTypingSound';
 
@@ -22,7 +24,7 @@ const TOKEN_PATTERN = '\\[([^\\]]+)\\]([^\\s[\\]]*)|[^\\s[\\]]+';
  *
  * Props:
  * @param {object} sentence - { text, expansions: { 키워드: { text, expansions? } } } [Required]
- * @param {number} maxWidth - 컨테이너 최대 폭 (px). 실제 폭은 ResizeObserver 로 매번 측정되어 pretext 에 그대로 전달 — 윈도우/부모 변화에 즉시 reflow [Optional, 기본값: 1100]
+ * @param {number|string} maxWidth - 컨테이너 최대 폭 (px) 또는 'none'. 실제 폭은 ResizeObserver 로 매번 측정되어 pretext 에 그대로 전달 — 윈도우/부모 변화에 즉시 reflow [Optional, 기본값: 'none' = 100%]
  * @param {number} fontSize - 본문 폰트 사이즈 (px) [Optional, 기본값: 28]
  * @param {number} lineHeight - line-height (px) [Optional, 기본값: 44]
  * @param {string} fontFamily - 폰트 패밀리 [Optional]
@@ -35,6 +37,8 @@ const TOKEN_PATTERN = '\\[([^\\]]+)\\]([^\\s[\\]]*)|[^\\s[\\]]+';
  * @param {number} wordGapEm - 어절 간 간격 (em 단위, fontSize 곱해서 px 산출) [Optional, 기본값: 0.32]
  * @param {object} fontSizeClamp - CSS clamp(min, vw%, max) 반응형 fontSize. { min, vw, max }. 설정 시 fontSize prop 무시. JS 로 동일 값 계산해 pretext 측정에 그대로 사용 [Optional, 기본값: null]
  * @param {number} lineHeightRatio - lineHeight = fontSize × ratio (lineHeight prop 없을 때만) [Optional, 기본값: 1.7]
+ * @param {number} indentEm - depth 별 들여쓰기 (em 단위, fontSize 곱). lb-open 마다 depth++, lb-close 마다 depth-- [Optional, 기본값: 1.4]
+ * @param {number} depthSizeRatio - depth 가 한 단계 깊어질 때마다 fontSize × ratio. 1.0 = 모두 동일. 0.88 = 단계마다 12% 축소 [Optional, 기본값: 0.88]
  * @param {boolean} showMinimap - 우상단 키워드 트리 미니맵 표시 [Optional, 기본값: true]
  *
  * Example usage:
@@ -42,7 +46,7 @@ const TOKEN_PATTERN = '\\[([^\\]]+)\\]([^\\s[\\]]*)|[^\\s[\\]]+';
  */
 function ExpandableSentence({
   sentence,
-  maxWidth = 1100,
+  maxWidth = 'none',
   fontSize = 44,
   lineHeight,
   fontFamily = '"Wanted Sans Variable", "Pretendard Variable", "Apple SD Gothic Neo", system-ui, sans-serif',
@@ -55,11 +59,13 @@ function ExpandableSentence({
   wordGapEm = 0.38,
   fontSizeClamp = null,
   lineHeightRatio = 1.7,
+  indentEm = 1.4,
+  depthSizeRatio = 0.88,
   showMinimap = true,
 }) {
-  const containerRef = useRef(null);
+  const innerRef = useRef(null);
   const [vw, setVw] = useState(() => (typeof window !== 'undefined' ? window.innerWidth : 1024));
-  const [actualWidth, setActualWidth] = useState(maxWidth);
+  const [actualWidth, setActualWidth] = useState(typeof maxWidth === 'number' ? maxWidth : 800);
 
   useEffect(() => {
     if (typeof window === 'undefined') return undefined;
@@ -69,7 +75,7 @@ function ExpandableSentence({
   }, []);
 
   useEffect(() => {
-    const el = containerRef.current;
+    const el = innerRef.current;
     if (!el || typeof ResizeObserver === 'undefined') return undefined;
     const ro = new ResizeObserver((entries) => {
       for (const e of entries) {
@@ -91,12 +97,14 @@ function ExpandableSentence({
     () => ({
       width: actualWidth,
       fontFamily,
-      fontSize: actualFontSize,
-      lineHeight: actualLineHeight,
+      baseFontSize: actualFontSize,
+      lineHeightRatio,
       letterSpacing,
       wordGapEm,
+      indentEm,
+      depthSizeRatio,
     }),
-    [actualWidth, fontFamily, actualFontSize, actualLineHeight, letterSpacing, wordGapEm],
+    [actualWidth, fontFamily, actualFontSize, lineHeightRatio, letterSpacing, wordGapEm, indentEm, depthSizeRatio],
   );
 
   const [hoveredId, setHoveredId] = useState(null);
@@ -164,44 +172,61 @@ function ExpandableSentence({
   const totalHeight = useMemo(() => {
     let max = actualLineHeight;
     for (const a of positioned) {
-      if (a.y + actualLineHeight > max) max = a.y + actualLineHeight;
+      const lh = (a.fontSize || actualFontSize) * lineHeightRatio;
+      if (a.y + lh > max) max = a.y + lh;
     }
     return max;
-  }, [positioned, actualLineHeight]);
+  }, [positioned, actualLineHeight, actualFontSize, lineHeightRatio]);
 
   return (
     <Box
-      ref={ containerRef }
       sx={ {
-        position: 'relative',
         width: '100%',
         maxWidth,
-        minHeight: totalHeight,
         fontFamily,
         color: 'text.primary',
         wordBreak: 'keep-all',
       } }
     >
+      <Box
+        ref={ innerRef }
+        sx={ {
+          position: 'relative',
+          width: '100%',
+          minHeight: totalHeight,
+        } }
+      >
       { positioned.map((atom) => {
+        if (atom.isLineBreak) return null;
         if (atom.revealedChars === 0) return null;
         const showIndicator = atom.hasExpansion
           && atom.phase !== 'exiting'
           && atom.revealedChars === atom.text.length;
         const inScope = !hoveredId
           || atom.id === hoveredId
-          || atom.id.startsWith(`${hoveredId}/`);
+          || atom.id.startsWith(`${hoveredId}/`)
+          || (atom.isKeyword && hoveredId.startsWith(`${atom.id}/`));
+        const handleEnter = () => {
+          if (atom.isKeyword) {
+            setHoveredId(atom.id);
+          } else {
+            const m = atom.id.match(/^(.+\/k:[^/]+)\/e\/w\d+:.+$/);
+            if (m) setHoveredId(m[1]);
+          }
+        };
+        const handleLeave = () => setHoveredId(null);
         return (
           <span
             key={ atom.id }
             onClick={ () => onAtomClick(atom) }
-            onMouseEnter={ atom.clickPath ? () => setHoveredId(atom.id) : undefined }
-            onMouseLeave={ atom.clickPath ? () => setHoveredId(null) : undefined }
+            onMouseEnter={ handleEnter }
+            onMouseLeave={ handleLeave }
             style={ {
               position: 'absolute',
               left: atom.x,
               top: atom.y,
               whiteSpace: 'nowrap',
-              fontSize: actualFontSize,
+              fontSize: atom.fontSize || actualFontSize,
               fontWeight: atom.weight,
               fontFamily,
               letterSpacing: `${letterSpacing}px`,
@@ -233,6 +258,7 @@ function ExpandableSentence({
           </span>
         );
       }) }
+      </Box>
       { showMinimap && (
         <KeywordMinimap
           atoms={ atoms }
@@ -254,7 +280,99 @@ function ExpandableSentence({
  */
 function KeywordMinimap({ atoms, onToggle, hoveredId, onHover }) {
   const tree = buildKeywordTree(atoms);
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
   if (tree.length === 0) return null;
+
+  const headerLabel = (
+    <Box sx={ {
+      fontSize: 9,
+      opacity: 0.55,
+      letterSpacing: '0.08em',
+      mb: 1,
+      textTransform: 'uppercase',
+    } }>
+      Keyword Tree
+    </Box>
+  );
+
+  const treeBody = tree.map((node) => (
+    <MinimapNode
+      key={ node.atom.id }
+      node={ node }
+      depth={ 0 }
+      onToggle={ onToggle }
+      hoveredId={ hoveredId }
+      onHover={ onHover }
+    />
+  ));
+
+  if (isMobile) {
+    return (
+      <>
+        <IconButton
+          aria-label='open keyword tree'
+          onClick={ () => setDrawerOpen(true) }
+          sx={ {
+            position: 'fixed',
+            top: 8,
+            right: 8,
+            zIndex: 10,
+            width: 36,
+            height: 36,
+            borderRadius: 0,
+            color: 'text.primary',
+            backgroundColor: 'rgba(245, 240, 250, 0.94)',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
+            border: '1px solid',
+            borderColor: 'divider',
+            '&:hover': { backgroundColor: 'rgba(245, 240, 250, 1)' },
+          } }
+        >
+          <MenuIcon sx={ { fontSize: 18 } } />
+        </IconButton>
+        <Drawer
+          anchor='right'
+          open={ drawerOpen }
+          onClose={ () => setDrawerOpen(false) }
+          slotProps={ {
+            backdrop: { sx: { backgroundColor: 'transparent' } },
+          } }
+          PaperProps={ {
+            sx: {
+              width: '78vw',
+              maxWidth: 320,
+              backgroundColor: 'rgba(245, 240, 250, 0.32)',
+              backdropFilter: 'blur(24px) saturate(150%)',
+              WebkitBackdropFilter: 'blur(24px) saturate(150%)',
+              borderLeft: '1px solid rgba(255, 255, 255, 0.5)',
+              boxShadow: '-12px 0 40px rgba(17, 10, 38, 0.10)',
+              p: 2.5,
+              fontFamily: '"Wanted Sans Variable", "Pretendard Variable", system-ui, sans-serif',
+              fontSize: 12,
+              lineHeight: 1.5,
+              color: 'text.primary',
+            },
+          } }
+        >
+          <Box sx={ { display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1.5 } }>
+            { headerLabel }
+            <IconButton
+              aria-label='close'
+              onClick={ () => setDrawerOpen(false) }
+              sx={ { borderRadius: 0, p: 0.5, color: 'text.primary' } }
+            >
+              <CloseIcon sx={ { fontSize: 18 } } />
+            </IconButton>
+          </Box>
+          { treeBody }
+        </Drawer>
+      </>
+    );
+  }
+
   return (
     <Box
       sx={ {
@@ -262,35 +380,24 @@ function KeywordMinimap({ atoms, onToggle, hoveredId, onHover }) {
         top: 16,
         right: 16,
         zIndex: 10,
-        maxWidth: 300,
+        maxWidth: { sm: 240, md: 300 },
         maxHeight: '85vh',
         overflowY: 'auto',
-        backgroundColor: 'rgba(245, 240, 250, 0.94)',
-        backdropFilter: 'blur(10px)',
-        WebkitBackdropFilter: 'blur(10px)',
-        border: '1px solid',
-        borderColor: 'divider',
-        p: 1.75,
+        backgroundColor: 'rgba(245, 240, 250, 0.32)',
+        backdropFilter: 'blur(24px) saturate(150%)',
+        WebkitBackdropFilter: 'blur(24px) saturate(150%)',
+        border: '1px solid rgba(255, 255, 255, 0.5)',
+        boxShadow: '0 12px 40px rgba(17, 10, 38, 0.10)',
+        p: { sm: 1.5, md: 1.75 },
         fontFamily: '"Wanted Sans Variable", "Pretendard Variable", system-ui, sans-serif',
-        fontSize: 11,
+        fontSize: { sm: 10, md: 11 },
         lineHeight: 1.5,
         color: 'text.primary',
         userSelect: 'none',
       } }
     >
-      <Box sx={ { fontSize: 9, opacity: 0.55, letterSpacing: '0.08em', mb: 1, textTransform: 'uppercase' } }>
-        Keyword Tree
-      </Box>
-      { tree.map((node) => (
-        <MinimapNode
-          key={ node.atom.id }
-          node={ node }
-          depth={ 0 }
-          onToggle={ onToggle }
-          hoveredId={ hoveredId }
-          onHover={ onHover }
-        />
-      )) }
+      { headerLabel }
+      { treeBody }
     </Box>
   );
 }
@@ -298,7 +405,10 @@ function KeywordMinimap({ atoms, onToggle, hoveredId, onHover }) {
 function MinimapNode({ node, depth, onToggle, hoveredId, onHover }) {
   const { atom, children } = node;
   const indicator = atom.hasExpansion ? (atom.isExpanded ? '−' : '+') : '·';
-  const inScope = !hoveredId || atom.id === hoveredId || atom.id.startsWith(`${hoveredId}/`);
+  const inScope = !hoveredId
+    || atom.id === hoveredId
+    || atom.id.startsWith(`${hoveredId}/`)
+    || hoveredId.startsWith(`${atom.id}/`);
   const handleToggle = atom.hasExpansion
     ? (ev) => {
       ev.stopPropagation();
@@ -418,7 +528,9 @@ function walk(node, path, expanded, atoms, plainWeight, keywordWeight) {
         keywordLabel: keyword,
       });
       if (isExpanded && hasExpansion) {
+        atoms.push({ id: `${kPath}/lb-open`, isLineBreak: true, text: '', clickPath: null });
         walk(node.expansions[keyword], `${kPath}/e`, expanded, atoms, plainWeight, keywordWeight);
+        atoms.push({ id: `${kPath}/lb-close`, isLineBreak: true, text: '', clickPath: null });
       }
     } else {
       const word = m[0];
@@ -441,25 +553,60 @@ function walk(node, path, expanded, atoms, plainWeight, keywordWeight) {
  * 매 프레임 호출. revealedChars 기준으로 displayed text 폭 측정 → greedy line wrap.
  * revealedChars=0 인 atom 은 폭 0, x 도 누적 안 함 (다음 어절이 자기 자리로 흐름).
  */
-function layoutAtoms(atoms, { width, fontFamily, fontSize, lineHeight, letterSpacing, wordGapEm }) {
+function layoutAtoms(atoms, opts) {
+  const { width, fontFamily, baseFontSize, lineHeightRatio, letterSpacing, wordGapEm, indentEm, depthSizeRatio } = opts;
   let x = 0;
   let y = 0;
-  const gap = wordGapEm * fontSize;
+  let depth = 0;
+  let needsNewLine = false;
+  let placedAny = false;
+  let currentLineHeight = baseFontSize * lineHeightRatio;
+  const indentPx = (indentEm || 0) * baseFontSize;
   const out = [];
+
+  const sizeAt = (d) => baseFontSize * (depthSizeRatio ** d);
+
   for (const atom of atoms) {
-    const displayed = atom.text.slice(0, atom.revealedChars);
-    if (!displayed) {
-      out.push({ ...atom, x, y, width: 0 });
+    if (atom.isLineBreak) {
+      if (atom.id.endsWith('/lb-open')) depth += 1;
+      else if (atom.id.endsWith('/lb-close')) depth = Math.max(0, depth - 1);
+      needsNewLine = true;
+      out.push({ ...atom, x: depth * indentPx, y, width: 0, fontSize: sizeAt(depth) });
       continue;
     }
-    const font = `${atom.weight} ${fontSize}px ${fontFamily}`;
-    const w = measureWord(displayed, font, letterSpacing);
-    if (x + w > width && x > 0) {
-      x = 0;
-      y += lineHeight;
+
+    const atomFontSize = sizeAt(depth);
+    const atomLineHeight = atomFontSize * lineHeightRatio;
+    const gap = wordGapEm * atomFontSize;
+    const displayed = atom.text.slice(0, atom.revealedChars);
+
+    if (needsNewLine) {
+      if (placedAny) {
+        y += currentLineHeight;
+      }
+      x = depth * indentPx;
+      currentLineHeight = atomLineHeight;
+      needsNewLine = false;
     }
-    out.push({ ...atom, x, y, width: w });
+
+    if (!displayed) {
+      out.push({ ...atom, x, y, width: 0, fontSize: atomFontSize });
+      continue;
+    }
+
+    const font = `${atom.weight} ${atomFontSize}px ${fontFamily}`;
+    const w = measureWord(displayed, font, letterSpacing);
+    const lineStart = depth * indentPx;
+    if (x + w > width && x > lineStart) {
+      x = lineStart;
+      y += currentLineHeight;
+      currentLineHeight = atomLineHeight;
+    } else {
+      if (atomLineHeight > currentLineHeight) currentLineHeight = atomLineHeight;
+    }
+    out.push({ ...atom, x, y, width: w, fontSize: atomFontSize });
     x += w + gap;
+    placedAny = true;
   }
   return out;
 }
@@ -491,6 +638,8 @@ function reconcile(prev, target, now, charDelay) {
         isKeyword: t.isKeyword,
         keywordLabel: t.keywordLabel,
       });
+    } else if (t.isLineBreak) {
+      result.push({ ...t, phase: 'idle', revealedChars: 0 });
     } else {
       result.push({
         ...t,
@@ -502,14 +651,17 @@ function reconcile(prev, target, now, charDelay) {
     }
   }
 
-  const newExiting = prev.filter((a) => !targetIds.has(a.id) && a.phase !== 'exiting');
+  const newExiting = prev.filter(
+    (a) => !targetIds.has(a.id) && a.phase !== 'exiting',
+  );
 
+  const exitCharDelay = charDelay / 2;
   const exitTimes = new Map();
   let exitCursor = 0;
   for (let i = newExiting.length - 1; i >= 0; i -= 1) {
     const e = newExiting[i];
     exitTimes.set(e.id, now + exitCursor);
-    exitCursor += e.text.length * charDelay;
+    if (!e.isLineBreak) exitCursor += e.text.length * exitCharDelay;
   }
 
   const insertAtPrevPosition = (atomId, item) => {
@@ -545,6 +697,10 @@ function tickAtoms(atoms, now, charDelay) {
   let changed = false;
   const next = [];
   for (const a of atoms) {
+    if (a.isLineBreak) {
+      next.push(a);
+      continue;
+    }
     if (a.phase === 'idle') {
       next.push(a);
       continue;
@@ -570,9 +726,10 @@ function tickAtoms(atoms, now, charDelay) {
         next.push(a);
         continue;
       }
+      const exitCharDelay = charDelay / 2;
       const target = Math.max(
         0,
-        a.text.length - Math.floor((now - a.exitAt) / charDelay) - 1,
+        a.text.length - Math.floor((now - a.exitAt) / exitCharDelay) - 1,
       );
       if (target !== a.revealedChars) {
         next.push({ ...a, revealedChars: target });
@@ -582,7 +739,22 @@ function tickAtoms(atoms, now, charDelay) {
       }
     }
   }
-  const filtered = next.filter((a) => !(a.phase === 'exiting' && a.revealedChars === 0));
+  const contentFiltered = next.filter(
+    (a) => a.isLineBreak || !(a.phase === 'exiting' && a.revealedChars === 0),
+  );
+
+  // 고아 linebreak 제거: 자기가 감싸야 할 content (같은 expansion 의 비-linebreak atom) 가
+  // 모두 사라진 exiting linebreak 는 unmount.
+  const filtered = contentFiltered.filter((a) => {
+    if (!a.isLineBreak || a.phase !== 'exiting') return true;
+    const parentPath = a.id.replace(/\/lb-(open|close)$/, '');
+    const expansionPrefix = `${parentPath}/e/`;
+    const hasSibling = contentFiltered.some(
+      (b) => b.id !== a.id && b.id.startsWith(expansionPrefix),
+    );
+    return hasSibling;
+  });
+
   if (filtered.length !== next.length) changed = true;
   return { atoms: filtered, changed };
 }

@@ -62,7 +62,7 @@ export default {
     },
     showMinimap: {
       control: 'boolean',
-      description: '우상단 키워드 트리 미니맵 표시',
+      description: '우상단 키워드 트리 미니맵 표시 (모바일은 Drawer 로 자동 전환). 미니맵/Drawer 컨테이너는 glassmorphism 기본 적용',
     },
     fontSizeClamp: {
       control: 'object',
@@ -71,6 +71,14 @@ export default {
     lineHeightRatio: {
       control: { type: 'number', min: 1.1, max: 2.5, step: 0.05 },
       description: 'lineHeight = fontSize × ratio (lineHeight 없을 때)',
+    },
+    indentEm: {
+      control: { type: 'number', min: 0, max: 4, step: 0.1 },
+      description: 'depth 별 들여쓰기 em (lb-open 마다 +1, lb-close 마다 -1 depth)',
+    },
+    depthSizeRatio: {
+      control: { type: 'number', min: 0.5, max: 1, step: 0.02 },
+      description: 'depth 한 단계 깊어질 때 fontSize 곱 (1=동일, 0.88=12% 축소)',
     },
   },
 };

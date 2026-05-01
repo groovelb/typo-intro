@@ -14,17 +14,16 @@ function HomePage() {
     <Box
       sx={ {
         minHeight: '100vh',
-        backgroundColor: 'background.default',
+        background: 'radial-gradient(ellipse at 20% 0%, #F1ECF6 0%, #F8F5FB 40%, #F2EEF7 75%, #EBE5F1 100%)',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-start',
-        px: { xs: 3, sm: 6, md: 10 },
-        py: { xs: 6, sm: 10, md: 16 },
+        px: { xs: 2, sm: 4, md: 6 },
+        py: { xs: 4, sm: 6, md: 10 },
       } }
     >
       <ExpandableSentence
         sentence={ INTRO_SENTENCE }
-        maxWidth={ 1100 }
         fontSizeClamp={ { min: 22, vw: 3.6, max: 56 } }
         lineHeightRatio={ 1.7 }
         plainWeight={ 500 }
