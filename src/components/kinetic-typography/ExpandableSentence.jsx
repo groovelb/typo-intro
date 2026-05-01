@@ -55,7 +55,7 @@ function ExpandableSentence({
   charDelay = 45,
   isMuted = false,
   keyVolume = 0.3,
-  letterSpacing = -1.5,
+  letterSpacing = 0,
   wordGapEm = 0.38,
   fontSizeClamp = null,
   lineHeightRatio = 1.7,

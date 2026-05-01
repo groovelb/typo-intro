@@ -29,7 +29,7 @@ function HomePage() {
         plainWeight={ 500 }
         keywordWeight={ 800 }
         charDelay={ 35 }
-        letterSpacing={ -1.4 }
+        letterSpacing={ 0 }
         wordGapEm={ 0.38 }
         showMinimap
       />
